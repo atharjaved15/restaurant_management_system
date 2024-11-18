@@ -35,7 +35,7 @@ class CartScreen extends StatelessWidget {
                       leading: Image.network(item['product_imageURL'],
                           width: 50, height: 50, fit: BoxFit.cover),
                       title: Text(item['product_name']),
-                      subtitle: Text('\$${item['product_price'].toString()}'),
+                      subtitle: Text('£${item['product_price'].toString()}'),
                       trailing: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
@@ -78,7 +78,7 @@ class CartScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     Obx(() => Text(
-                          'Total: \$${cartController.totalAmount.value.toStringAsFixed(2)}',
+                          'Total: £${cartController.totalAmount.value.toStringAsFixed(2)}',
                           style: const TextStyle(
                               fontSize: 20, fontWeight: FontWeight.bold),
                         )),

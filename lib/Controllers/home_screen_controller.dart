@@ -17,6 +17,8 @@ class HomeController extends GetxController {
   var searchQuery = ''.obs;
   var username = ''.obs;
   var useremail = ''.obs;
+  var loyaltyPoints = 75.obs; // Sample value for loyalty points
+  var totalOrders = 150.obs; // Sample value for total orders
 
   @override
   void onInit() {

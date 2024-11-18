@@ -18,7 +18,6 @@ class HomeScreen extends StatelessWidget {
         child: LayoutBuilder(
           builder: (context, constraints) {
             final bool isWideScreen = constraints.maxWidth > 600;
-
             return Column(
               children: [
                 // Header
@@ -109,7 +108,25 @@ class HomeScreen extends StatelessWidget {
                                 color: Colors.black87,
                               ),
                             ),
-                            const SizedBox(height: 30),
+                            const SizedBox(height: 20),
+
+                            // Search Bar
+                            TextField(
+                              onChanged: (value) {
+                                controller.filterItems(value);
+                              },
+                              decoration: InputDecoration(
+                                hintText: 'Search items...',
+                                prefixIcon: const Icon(Icons.search),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                contentPadding:
+                                    const EdgeInsets.symmetric(horizontal: 10),
+                              ),
+                            ),
+
+                            const SizedBox(height: 20),
 
                             // Hot Items Carousel
                             if (controller.hotItems.isEmpty)
@@ -117,10 +134,10 @@ class HomeScreen extends StatelessWidget {
                             else
                               CarouselSlider(
                                 options: CarouselOptions(
-                                  height: isWideScreen ? 500.0 : 300.0,
+                                  height: isWideScreen ? 300.0 : 250.0,
                                   autoPlay: true,
                                   enlargeCenterPage: false,
-                                  aspectRatio: isWideScreen ? 16 / 6 : 16 / 9,
+                                  aspectRatio: isWideScreen ? 16 / 8 : 16 / 9,
                                   autoPlayCurve: Curves.fastOutSlowIn,
                                   enableInfiniteScroll: true,
                                   autoPlayAnimationDuration:
@@ -158,14 +175,14 @@ class HomeScreen extends StatelessWidget {
                                                     top: Radius.circular(15)),
                                             child: Image.network(
                                               item.imageUrl,
-                                              height: isWideScreen ? 220 : 170,
+                                              height: isWideScreen ? 150 : 120,
                                               width: double.infinity,
                                               fit: BoxFit.cover,
                                               errorBuilder: (context, error,
                                                       stackTrace) =>
                                                   const Icon(
                                                       Icons.image_not_supported,
-                                                      size: 170),
+                                                      size: 150),
                                             ),
                                           ),
                                           Padding(
@@ -186,7 +203,19 @@ class HomeScreen extends StatelessWidget {
                                                 ),
                                                 const SizedBox(height: 5),
                                                 Text(
-                                                  '\$${item.price.toStringAsFixed(2)}',
+                                                  item.description,
+                                                  style: const TextStyle(
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                    fontSize: 12,
+                                                  ),
+                                                  maxLines: 1,
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                ),
+                                                const SizedBox(height: 5),
+                                                Text(
+                                                  '\£${item.price.toStringAsFixed(2)}',
                                                   style: const TextStyle(
                                                     color: Colors.green,
                                                     fontWeight: FontWeight.bold,
@@ -194,15 +223,22 @@ class HomeScreen extends StatelessWidget {
                                                   ),
                                                 ),
                                                 const SizedBox(height: 5),
-                                                Text(
-                                                  item.description,
-                                                  maxLines: 2,
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                  style: TextStyle(
-                                                    color: Colors.grey[600],
+                                                Row(
+                                                  children: List.generate(
+                                                    5,
+                                                    (index) => Icon(
+                                                      index <
+                                                              (3 +
+                                                                  (index.isEven
+                                                                      ? 1
+                                                                      : 0))
+                                                          ? Icons.star
+                                                          : Icons.star_border,
+                                                      color: Colors.amber,
+                                                      size: 15,
+                                                    ),
                                                   ),
-                                                ),
+                                                )
                                               ],
                                             ),
                                           ),
@@ -278,7 +314,7 @@ class HomeScreen extends StatelessWidget {
                                       gridDelegate:
                                           SliverGridDelegateWithFixedCrossAxisCount(
                                         crossAxisCount: isWideScreen ? 3 : 2,
-                                        childAspectRatio: 0.8,
+                                        childAspectRatio: 0.9,
                                         crossAxisSpacing: 10,
                                         mainAxisSpacing: 10,
                                       ),
@@ -320,7 +356,7 @@ class HomeScreen extends StatelessWidget {
                                                     item.imageUrl,
                                                     height: isWideScreen
                                                         ? 180
-                                                        : 150,
+                                                        : 120,
                                                     width: double.infinity,
                                                     fit: BoxFit.cover,
                                                     errorBuilder: (context,
@@ -329,7 +365,7 @@ class HomeScreen extends StatelessWidget {
                                                         const Icon(
                                                             Icons
                                                                 .image_not_supported,
-                                                            size: 150),
+                                                            size: 100),
                                                   ),
                                                 ),
                                                 Padding(
@@ -353,7 +389,36 @@ class HomeScreen extends StatelessWidget {
                                                       ),
                                                       const SizedBox(height: 5),
                                                       Text(
-                                                        '\$${item.price.toStringAsFixed(2)}',
+                                                        item.description,
+                                                        maxLines: 2,
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
+                                                        style: TextStyle(
+                                                          color:
+                                                              Colors.grey[600],
+                                                        ),
+                                                      ),
+                                                      const SizedBox(height: 5),
+                                                      Row(
+                                                        children: List.generate(
+                                                          5,
+                                                          (index) => Icon(
+                                                            index <
+                                                                    (3 +
+                                                                        (index.isEven
+                                                                            ? 1
+                                                                            : 0))
+                                                                ? Icons.star
+                                                                : Icons
+                                                                    .star_border,
+                                                            color: Colors.amber,
+                                                            size: 12,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      const SizedBox(height: 5),
+                                                      Text(
+                                                        '\£${item.price.toStringAsFixed(2)}',
                                                         style: const TextStyle(
                                                           color: Colors.green,
                                                           fontWeight:
@@ -370,91 +435,96 @@ class HomeScreen extends StatelessWidget {
                                         );
                                       },
                                     ),
+                                  // Footer Section
+                                  isWideScreen
+                                      ? Container(
+                                          color: Colors.grey[200],
+                                          padding: const EdgeInsets.all(20.0),
+                                          child: Column(
+                                            children: [
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Image.asset(
+                                                    'assets/images/logo.png',
+                                                    height: 200,
+                                                  ),
+                                                  const SizedBox(
+                                                    width: 10,
+                                                  ),
+                                                  const Text(
+                                                    'Restaurant Management System',
+                                                    style:
+                                                        TextStyle(fontSize: 30),
+                                                  )
+                                                ],
+                                              ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      const Text(
+                                                        'Quick Links',
+                                                        style: TextStyle(
+                                                          fontSize: 16,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                      ),
+                                                      const SizedBox(
+                                                          height: 10),
+                                                      TextButton(
+                                                        onPressed: () {},
+                                                        child: const Text(
+                                                            'About Us'),
+                                                      ),
+                                                      TextButton(
+                                                        onPressed: () {},
+                                                        child: const Text(
+                                                            'Contact Us'),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  const Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Text(
+                                                        'Address',
+                                                        style: TextStyle(
+                                                          fontSize: 16,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                      ),
+                                                      SizedBox(height: 10),
+                                                      Text('Manchester, UK'),
+                                                      Text(
+                                                          'Phone: +44 123 456 7890'),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                              const SizedBox(height: 20),
+                                              const Text(
+                                                '© 2024 Restaurant Management System',
+                                                style: TextStyle(
+                                                    color: Colors.grey),
+                                              ),
+                                            ],
+                                          ),
+                                        )
+                                      : Container(),
                                 ],
                               ),
-
-                            const SizedBox(
-                              height: 20,
-                            ),
-
-                            // Footer
-                            isWideScreen
-                                ? Container(
-                                    color: Colors.grey[200],
-                                    padding: const EdgeInsets.all(20.0),
-                                    child: Column(
-                                      children: [
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Image.asset(
-                                              'assets/images/logo.png',
-                                              height: 200,
-                                            ),
-                                            const SizedBox(
-                                              width: 10,
-                                            ),
-                                            const Text(
-                                              'Restaurant Management System',
-                                              style: TextStyle(fontSize: 30),
-                                            )
-                                          ],
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                const Text(
-                                                  'Quick Links',
-                                                  style: TextStyle(
-                                                    fontSize: 16,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                                ),
-                                                const SizedBox(height: 10),
-                                                TextButton(
-                                                  onPressed: () {},
-                                                  child: const Text('About Us'),
-                                                ),
-                                                TextButton(
-                                                  onPressed: () {},
-                                                  child:
-                                                      const Text('Contact Us'),
-                                                ),
-                                              ],
-                                            ),
-                                            const Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  'Address',
-                                                  style: TextStyle(
-                                                    fontSize: 16,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                                ),
-                                                SizedBox(height: 10),
-                                                Text('Manchester, UK'),
-                                                Text('Phone: +44 123 456 7890'),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                        const SizedBox(height: 20),
-                                        const Text(
-                                          '© 2024 Restaurant Management System',
-                                          style: TextStyle(color: Colors.grey),
-                                        ),
-                                      ],
-                                    ),
-                                  )
-                                : Container(),
                           ],
                         );
                       }),
