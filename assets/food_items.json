@@ -1,0 +1,179 @@
+{
+  "products": [
+    {
+      "product_name": "Margherita Pizza",
+      "product_description": "Classic pizza with fresh basil and mozzarella.",
+      "product_price": 8.99,
+      "product_imageURL": "https://images.unsplash.com/photo-1604908177528-9f9373dbb586",
+      "category": "Pizzas"
+    },
+    {
+      "product_name": "Pepperoni Pizza",
+      "product_description": "Topped with spicy pepperoni and mozzarella cheese.",
+      "product_price": 9.99,
+      "product_imageURL": "https://images.unsplash.com/photo-1552332386-f8dd00dc2f4f",
+      "category": "Pizzas"
+    },
+    {
+      "product_name": "BBQ Chicken Pizza",
+      "product_description": "Chicken, BBQ sauce, and smoked mozzarella.",
+      "product_price": 10.99,
+      "product_imageURL": "https://images.unsplash.com/photo-1594007652689-83212d4b7294",
+      "category": "Pizzas"
+    },
+    {
+      "product_name": "Veggie Pizza",
+      "product_description": "Bell peppers, olives, onions, and mozzarella.",
+      "product_price": 8.49,
+      "product_imageURL": "https://images.unsplash.com/photo-1603077165392-48a348c03b8d",
+      "category": "Pizzas"
+    },
+    {
+      "product_name": "Hawaiian Pizza",
+      "product_description": "Ham and pineapple with mozzarella cheese.",
+      "product_price": 9.49,
+      "product_imageURL": "https://images.unsplash.com/photo-1594007652698-22fdfa3e6db5",
+      "category": "Pizzas"
+    },
+    {
+      "product_name": "Classic Cheeseburger",
+      "product_description": "Juicy beef patty with melted cheese.",
+      "product_price": 6.99,
+      "product_imageURL": "https://images.unsplash.com/photo-1586190848861-99aa4a171e90",
+      "category": "Burgers"
+    },
+    {
+      "product_name": "Bacon Burger",
+      "product_description": "Crispy bacon and beef patty with cheese.",
+      "product_price": 7.99,
+      "product_imageURL": "https://images.unsplash.com/photo-1617191517108-9b7f5d50ae4f",
+      "category": "Burgers"
+    },
+    {
+      "product_name": "Veggie Burger",
+      "product_description": "Grilled veggie patty with fresh toppings.",
+      "product_price": 5.99,
+      "product_imageURL": "https://images.unsplash.com/photo-1611078483744-cd8c15a6b6ca",
+      "category": "Burgers"
+    },
+    {
+      "product_name": "Spicy Chicken Burger",
+      "product_description": "Spicy fried chicken with lettuce and mayo.",
+      "product_price": 6.49,
+      "product_imageURL": "https://images.unsplash.com/photo-1588608512443-d46304aa60d2",
+      "category": "Burgers"
+    },
+    {
+      "product_name": "Double Cheeseburger",
+      "product_description": "Two beef patties with double cheese.",
+      "product_price": 8.49,
+      "product_imageURL": "https://images.unsplash.com/photo-1565294124520-432ff8f87d14",
+      "category": "Burgers"
+    },
+    {
+      "product_name": "French Fries",
+      "product_description": "Crispy golden fries.",
+      "product_price": 3.49,
+      "product_imageURL": "https://images.unsplash.com/photo-1586190848861-99aa4a171e90",
+      "category": "Snacks"
+    },
+    {
+      "product_name": "Onion Rings",
+      "product_description": "Crispy and delicious onion rings.",
+      "product_price": 3.99,
+      "product_imageURL": "https://images.unsplash.com/photo-1578686723120-4a299ad59f37",
+      "category": "Snacks"
+    },
+    {
+      "product_name": "Chicken Nuggets",
+      "product_description": "Bite-sized crispy chicken nuggets.",
+      "product_price": 4.49,
+      "product_imageURL": "https://images.unsplash.com/photo-1591981096306-b909cc1b1cf1",
+      "category": "Snacks"
+    },
+    {
+      "product_name": "Mozzarella Sticks",
+      "product_description": "Crispy sticks with gooey mozzarella inside.",
+      "product_price": 4.99,
+      "product_imageURL": "https://images.unsplash.com/photo-1612197595407-59328c51d62b",
+      "category": "Snacks"
+    },
+    {
+      "product_name": "Spring Rolls",
+      "product_description": "Vegetable spring rolls with dipping sauce.",
+      "product_price": 4.29,
+      "product_imageURL": "https://images.unsplash.com/photo-1602060121525-46254241a7d9",
+      "category": "Snacks"
+    },
+    {
+      "product_name": "Bruschetta",
+      "product_description": "Toasted bread topped with tomatoes and basil.",
+      "product_price": 5.49,
+      "product_imageURL": "https://images.unsplash.com/photo-1551218808-94e220e084d2",
+      "category": "Appetizers"
+    },
+    {
+      "product_name": "Garlic Bread",
+      "product_description": "Toasted bread with garlic butter.",
+      "product_price": 3.99,
+      "product_imageURL": "https://images.unsplash.com/photo-1584306667146-5f7dbd3d66e6",
+      "category": "Appetizers"
+    },
+    {
+      "product_name": "Stuffed Mushrooms",
+      "product_description": "Mushrooms stuffed with cheese and herbs.",
+      "product_price": 6.49,
+      "product_imageURL": "https://images.unsplash.com/photo-1599025186365-dbc91f495b1c",
+      "category": "Appetizers"
+    },
+    {
+      "product_name": "Shrimp Cocktail",
+      "product_description": "Chilled shrimp served with cocktail sauce.",
+      "product_price": 7.99,
+      "product_imageURL": "https://images.unsplash.com/photo-1603052879246-bd147bbfd245",
+      "category": "Appetizers"
+    },
+    {
+      "product_name": "Buffalo Wings",
+      "product_description": "Spicy buffalo wings with ranch dip.",
+      "product_price": 6.99,
+      "product_imageURL": "https://images.unsplash.com/photo-1562967916-eb82221dfb5a",
+      "category": "Appetizers"
+    },
+    {
+      "product_name": "Coca Cola",
+      "product_description": "Refreshing cola drink.",
+      "product_price": 1.99,
+      "product_imageURL": "https://images.unsplash.com/photo-1558568834-54cb5a7b6b06",
+      "category": "Drinks"
+    },
+    {
+      "product_name": "Lemonade",
+      "product_description": "Fresh lemonade with a hint of mint.",
+      "product_price": 2.49,
+      "product_imageURL": "https://images.unsplash.com/photo-1592827260988-80e6d3dcfe7b",
+      "category": "Drinks"
+    },
+    {
+      "product_name": "Iced Tea",
+      "product_description": "Chilled tea with lemon flavor.",
+      "product_price": 2.29,
+      "product_imageURL": "https://images.unsplash.com/photo-1518133910547-7e441bda72c2",
+      "category": "Drinks"
+    },
+    {
+      "product_name": "Orange Juice",
+      "product_description": "Freshly squeezed orange juice.",
+      "product_price": 2.79,
+      "product_imageURL": "https://images.unsplash.com/photo-1579202673506-ca3ce28943ef",
+      "category": "Drinks"
+    },
+    {
+      "product_name": "Smoothie",
+      "product_description": "Blended fruit smoothie.",
+      "product_price": 3.49,
+      "product_imageURL": "https://images.unsplash.com/photo-1592194996308-8b268d1d61c5",
+      "category": "Drinks"
+    }
+  ]
+}
