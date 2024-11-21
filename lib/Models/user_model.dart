@@ -1,45 +1,43 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UserModel {
-  String? uid;
-  String? email;
-  String? name;
-  String? phone;
-  String? role;
-  DateTime? createdAt;
+  final String? name;
+  final String? phone;
+  final String? email;
+  final String? role;
+  final String? uid;
+  final Timestamp? createdAt;
 
   UserModel({
-    this.uid,
-    this.email,
     this.name,
     this.phone,
+    this.email,
     this.role,
+    this.uid,
     this.createdAt,
   });
 
-  // Factory constructor to create a UserModel from a Firestore document snapshot
-  factory UserModel.fromMap(Map<String, dynamic> map) {
+  // Factory constructor to create a UserModel from Firestore data
+  factory UserModel.fromMap(Map<String, dynamic> data) {
     return UserModel(
-      uid: map['uid'],
-      email: map['email'],
-      name: map['name'],
-      phone: map['phone'],
-      role: map['role'],
-      createdAt: map['createdAt'] != null
-          ? (map['createdAt'] as Timestamp).toDate()
-          : null,
+      name: data['name'] as String?,
+      phone: data['phone'] as String?,
+      email: data['email'] as String?,
+      role: data['role'] as String?,
+      uid: data['uid'] as String?,
+      createdAt: data['createdAt'] as Timestamp?,
     );
   }
 
-  // Method to convert UserModel to a map for Firestore storage
+  // Method to convert UserModel to a Map for Firestore
   Map<String, dynamic> toMap() {
     return {
-      'uid': uid,
-      'email': email,
       'name': name,
       'phone': phone,
+      'email': email,
       'role': role,
-      'createdAt': createdAt != null ? Timestamp.fromDate(createdAt!) : null,
+      'uid': uid,
+      'createdAt': createdAt,
     };
   }
 }

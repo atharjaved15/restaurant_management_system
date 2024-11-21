@@ -45,85 +45,87 @@ class OrdersScreen extends StatelessWidget {
               child: Text('No orders found.'),
             );
           } else {
-            return ListView.builder(
-              padding: EdgeInsets.symmetric(
-                horizontal: isMobile ? 16.w : 32.w,
-                vertical: 16.h,
-              ),
-              itemCount: cartController.orders.length,
-              itemBuilder: (context, index) {
-                final order = cartController.orders[index];
-                final List<dynamic> products = order['products'] ?? [];
-                final Timestamp? createdAt = order['created_at'] as Timestamp?;
-                final DateTime date = createdAt?.toDate() ?? DateTime.now();
+            return Padding(
+              padding: EdgeInsets.symmetric(horizontal: isMobile ? 16.w : 32.w),
+              child: GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount:
+                      isMobile ? 1 : 2, // Single column on mobile, two on web
+                  crossAxisSpacing: 16.w,
+                  mainAxisSpacing: 16.h,
+                  childAspectRatio: isMobile ? 0.8 : 1.2, // Adjust card ratio
+                ),
+                itemCount: cartController.orders.length,
+                itemBuilder: (context, index) {
+                  final order = cartController.orders[index];
+                  final List<dynamic> products = order['products'] ?? [];
+                  final Timestamp? createdAt =
+                      order['created_at'] as Timestamp?;
+                  final DateTime date = createdAt?.toDate() ?? DateTime.now();
 
-                return Card(
-                  margin: EdgeInsets.only(bottom: 16.h),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12.r),
-                  ),
-                  elevation: 4,
-                  child: Padding(
-                    padding: EdgeInsets.all(16.w),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // Products Display
-                        if (products.isEmpty)
-                          const Center(
-                            child: Text('No products in this order.'),
-                          )
-                        else if (products.length == 1)
-                          Center(
-                            child: Image.network(
-                              products[0]['product_imageURL'],
-                              width: isMobile ? 150.w : 250.w,
-                              height: isMobile ? 150.h : 250.h,
-                              fit: BoxFit.cover,
-                            ),
-                          )
-                        else
-                          CarouselSlider(
-                            options: CarouselOptions(
-                              height: isMobile ? 200.h : 300.h,
-                              enlargeCenterPage: true,
-                              enableInfiniteScroll: false,
-                            ),
-                            items: products.map((product) {
-                              return Builder(
-                                builder: (BuildContext context) {
-                                  return Image.network(
+                  return Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16.r),
+                    ),
+                    color: Colors.grey[100],
+                    elevation: 5,
+                    child: Padding(
+                      padding: EdgeInsets.all(16.w),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // Product Display
+                          if (products.isEmpty)
+                            const Center(
+                              child: Text('No products in this order.'),
+                            )
+                          else
+                            CarouselSlider(
+                              options: CarouselOptions(
+                                height: isMobile ? 150.h : 200.h,
+                                enlargeCenterPage: true,
+                                enableInfiniteScroll: false,
+                                viewportFraction: 0.8,
+                              ),
+                              items: products.map((product) {
+                                return ClipRRect(
+                                  borderRadius: BorderRadius.circular(8.r),
+                                  child: Image.network(
                                     product['product_imageURL'],
                                     fit: BoxFit.cover,
                                     width: double.infinity,
-                                  );
-                                },
-                              );
-                            }).toList(),
-                          ),
-                        SizedBox(height: 16.h),
+                                  ),
+                                );
+                              }).toList(),
+                            ),
+                          SizedBox(height: 16.h),
 
-                        // Order Details
-                        Text(
-                          'Total Price: \$${order['total_price']?.toStringAsFixed(2) ?? '0.00'}',
-                          style: TextStyle(
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.bold,
+                          // Order Details
+                          Text(
+                            'Total Price: \$${order['total_price']?.toStringAsFixed(2) ?? '0.00'}',
+                            style: TextStyle(
+                              fontSize: isMobile ? 16.sp : 18.sp,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.green[700],
+                            ),
                           ),
-                        ),
-                        Text(
-                          'Date: ${date.toLocal()}',
-                          style: TextStyle(fontSize: 14.sp, color: Colors.grey),
-                        ),
-                        SizedBox(height: 16.h),
+                          Text(
+                            'Date: ${date.toLocal()}',
+                            style: TextStyle(
+                                fontSize: isMobile ? 14.sp : 16.sp,
+                                color: Colors.grey),
+                          ),
+                          SizedBox(height: 8.h),
 
-                        // Collapsible Container for Status
-                        _OrderStatusCollapsible(status: order['status'] ?? ''),
-                      ],
+                          // Collapsible Status Widget
+                          _OrderStatusCollapsible(
+                              status: order['status'] ?? ''),
+                        ],
+                      ),
                     ),
-                  ),
-                );
-              },
+                  );
+                },
+              ),
             );
           }
         }),
@@ -176,19 +178,30 @@ class _OrderStatusCollapsibleState extends State<_OrderStatusCollapsible> {
           ),
         ),
         if (_isExpanded)
-          Column(
-            children: [
-              for (int i = 0; i < steps.length; i++)
-                ListTile(
-                  leading: Icon(
-                    i <= currentIndex
-                        ? Icons.check_circle
-                        : Icons.radio_button_unchecked,
-                    color: i <= currentIndex ? Colors.green : Colors.grey,
+          Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: Column(
+              children: [
+                for (int i = 0; i < steps.length; i++)
+                  ListTile(
+                    dense: true,
+                    leading: Icon(
+                      i <= currentIndex
+                          ? Icons.check_circle
+                          : Icons.radio_button_unchecked,
+                      color: i <= currentIndex ? Colors.green : Colors.grey,
+                    ),
+                    title: Text(
+                      steps[i],
+                      style: TextStyle(
+                        color: i <= currentIndex
+                            ? Colors.green[800]
+                            : Colors.grey[600],
+                      ),
+                    ),
                   ),
-                  title: Text(steps[i]),
-                ),
-            ],
+              ],
+            ),
           ),
       ],
     );

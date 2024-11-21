@@ -108,24 +108,26 @@ class CartController extends GetxController {
         return;
       }
 
-      final snapshot = await _firestore
+      // Listen to real-time changes in the 'orders' collection for the logged-in user
+      _firestore
           .collection('orders')
           .where('user_id', isEqualTo: user.uid)
-          .get();
+          .snapshots()
+          .listen((snapshot) {
+        // This will be triggered whenever the data changes in Firestore
+        orders.assignAll(snapshot.docs.map((doc) {
+          return {
+            'order_id': doc.id,
+            ...doc.data(),
+          };
+        }).toList());
 
-      // Ensure data is fetched correctly
-      orders.assignAll(snapshot.docs.map((doc) {
-        return {
-          'order_id': doc.id,
-          ...doc.data(),
-        };
-      }).toList());
-
-      if (orders.isEmpty) {
-        debugPrint('No orders found for user: ${user.uid}');
-      } else {
-        debugPrint('Fetched orders: ${orders.length}');
-      }
+        if (orders.isEmpty) {
+          debugPrint('No orders found for user: ${user.uid}');
+        } else {
+          debugPrint('Fetched orders: ${orders.length}');
+        }
+      });
     } catch (e) {
       debugPrint('Error fetching orders: $e');
       Get.snackbar('Error', 'Failed to fetch orders');

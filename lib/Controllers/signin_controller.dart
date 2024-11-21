@@ -67,7 +67,11 @@ class SignInController extends GetxController {
             backgroundColor: Colors.green,
             colorText: Colors.white,
           );
-          Get.offAllNamed('/main');
+          if (role == 'User') {
+            Get.offAllNamed('/main');
+          } else if (role == 'Staff') {
+            Get.offAllNamed('/staffHome');
+          }
         } else {
           Get.snackbar(
             'Role Mismatch',
