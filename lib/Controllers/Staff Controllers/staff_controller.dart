@@ -11,6 +11,7 @@ class StaffController extends GetxController {
   void onInit() {
     super.onInit();
     fetchStaffDetails();
+    fetchMyOrders();
     fetchOrders(); // Fetch the staff details when the controller is initialized
   }
 

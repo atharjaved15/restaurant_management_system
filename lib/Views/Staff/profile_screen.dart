@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -145,7 +146,12 @@ class StaffProfileScreen extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
+                    await FirebaseAuth.instance.signOut().whenComplete(
+                      () {
+                        Get.offAllNamed('/login');
+                      },
+                    );
                     // Add your sign-out logic here
                     Get.snackbar(
                       "Sign Out",
