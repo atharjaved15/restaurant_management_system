@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
+import 'package:restaurant_management_system/Views/HomePage/cart_screen.dart';
 import 'package:restaurant_management_system/Views/HomePage/home_page_structure.dart';
+import 'package:restaurant_management_system/Views/HomePage/order_screen.dart';
 import 'package:restaurant_management_system/Views/OnBoarding/onboarding_example.dart';
 import 'package:restaurant_management_system/Views/Staff/orders_screen.dart';
 import 'package:restaurant_management_system/Views/Staff/staff_homepage_structure.dart';
@@ -15,6 +17,8 @@ class AppRoutes {
   static const String main = '/main';
   static const String staffHome = '/staffHome';
   static const String staffOrders = '/staffOrders';
+  static const String orderScreen = '/orderScreen';
+  static const String cartScreen = '/cartScreen';
 
   // Define your routes here
   static final routes = [
@@ -25,5 +29,7 @@ class AppRoutes {
     GetPage(name: main, page: () => MainScreen()),
     GetPage(name: staffHome, page: () => StaffHomePageStructure()),
     GetPage(name: staffOrders, page: () => StaffOrderScreen()),
+    GetPage(name: orderScreen, page: () => OrdersScreen()),
+    GetPage(name: cartScreen, page: () => CartScreen()),
   ];
 }

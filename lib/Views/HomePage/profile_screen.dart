@@ -5,13 +5,27 @@ import 'package:get/get.dart';
 import 'package:restaurant_management_system/Controllers/home_screen_controller.dart';
 import 'package:restaurant_management_system/colors.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
+
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  final HomeController homeController = Get.put(HomeController());
+  @override
+  void initState() async {
+    super.initState();
+    // Initialize data or perform operations when the screen loads
+
+    await homeController
+        .fetchUserData(FirebaseAuth.instance.currentUser!.uid.toString());
+  }
 
   @override
   Widget build(BuildContext context) {
     // Accessing the HomeController for user data
-    final HomeController homeController = Get.find<HomeController>();
 
     return Scaffold(
       appBar: AppBar(

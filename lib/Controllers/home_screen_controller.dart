@@ -21,13 +21,13 @@ class HomeController extends GetxController {
   var totalOrders = 150.obs; // Sample value for total orders
 
   @override
-  void onInit() {
+  void onInit() async {
     super.onInit();
-    fetchCategories();
-    fetchAllItems();
-    fetchHotItems();
     var userId = FirebaseAuth.instance.currentUser?.uid ?? '';
-    fetchUserData(userId);
+    await fetchUserData(userId);
+    await fetchCategories();
+    await fetchAllItems();
+    await fetchHotItems();
   }
 
   // Fetching random "hot" items

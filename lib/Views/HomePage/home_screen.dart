@@ -56,22 +56,26 @@ class HomeScreen extends StatelessWidget {
                                 style: TextStyle(color: Colors.white),
                               ),
                             ),
+                            // TextButton(
+                            //   onPressed: () {},
+                            //   child: const Text(
+                            //     'Products',
+                            //     style: TextStyle(color: Colors.white),
+                            //   ),
+                            // ),
                             TextButton(
-                              onPressed: () {},
-                              child: const Text(
-                                'Products',
-                                style: TextStyle(color: Colors.white),
-                              ),
-                            ),
-                            TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Get.toNamed('/orderScreen');
+                              },
                               child: const Text(
                                 'Orders',
                                 style: TextStyle(color: Colors.white),
                               ),
                             ),
                             TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Get.toNamed('/cartScreen');
+                              },
                               child: const Text(
                                 'Cart',
                                 style: TextStyle(color: Colors.white),
@@ -342,94 +346,104 @@ class HomeScreen extends StatelessWidget {
                                                 ),
                                               ],
                                             ),
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                ClipRRect(
-                                                  borderRadius:
-                                                      const BorderRadius
-                                                          .vertical(
-                                                    top: Radius.circular(15),
+                                            child: SingleChildScrollView(
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  ClipRRect(
+                                                    borderRadius:
+                                                        const BorderRadius
+                                                            .vertical(
+                                                      top: Radius.circular(15),
+                                                    ),
+                                                    child: Image.network(
+                                                      item.imageUrl,
+                                                      height: isWideScreen
+                                                          ? 180
+                                                          : 80,
+                                                      width: double.infinity,
+                                                      fit: BoxFit.cover,
+                                                      errorBuilder: (context,
+                                                              error,
+                                                              stackTrace) =>
+                                                          const Icon(
+                                                              Icons
+                                                                  .image_not_supported,
+                                                              size: 100),
+                                                    ),
                                                   ),
-                                                  child: Image.network(
-                                                    item.imageUrl,
-                                                    height: isWideScreen
-                                                        ? 180
-                                                        : 120,
-                                                    width: double.infinity,
-                                                    fit: BoxFit.cover,
-                                                    errorBuilder: (context,
-                                                            error,
-                                                            stackTrace) =>
-                                                        const Icon(
-                                                            Icons
-                                                                .image_not_supported,
-                                                            size: 100),
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(8.0),
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      Text(
-                                                        item.name,
-                                                        style: const TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          fontSize: 14,
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            8.0),
+                                                    child: Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Text(
+                                                          item.name,
+                                                          style:
+                                                              const TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            fontSize: 14,
+                                                          ),
+                                                          maxLines: 1,
+                                                          overflow: TextOverflow
+                                                              .ellipsis,
                                                         ),
-                                                        maxLines: 1,
-                                                        overflow: TextOverflow
-                                                            .ellipsis,
-                                                      ),
-                                                      const SizedBox(height: 5),
-                                                      Text(
-                                                        item.description,
-                                                        maxLines: 2,
-                                                        overflow: TextOverflow
-                                                            .ellipsis,
-                                                        style: TextStyle(
-                                                          color:
-                                                              Colors.grey[600],
-                                                        ),
-                                                      ),
-                                                      const SizedBox(height: 5),
-                                                      Row(
-                                                        children: List.generate(
-                                                          5,
-                                                          (index) => Icon(
-                                                            index <
-                                                                    (3 +
-                                                                        (index.isEven
-                                                                            ? 1
-                                                                            : 0))
-                                                                ? Icons.star
-                                                                : Icons
-                                                                    .star_border,
-                                                            color: Colors.amber,
-                                                            size: 12,
+                                                        const SizedBox(
+                                                            height: 5),
+                                                        Text(
+                                                          item.description,
+                                                          maxLines: 2,
+                                                          overflow: TextOverflow
+                                                              .ellipsis,
+                                                          style: TextStyle(
+                                                            color: Colors
+                                                                .grey[600],
                                                           ),
                                                         ),
-                                                      ),
-                                                      const SizedBox(height: 5),
-                                                      Text(
-                                                        '\£${item.price.toStringAsFixed(2)}',
-                                                        style: const TextStyle(
-                                                          color: Colors.green,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          fontSize: 14,
+                                                        const SizedBox(
+                                                            height: 5),
+                                                        Row(
+                                                          children:
+                                                              List.generate(
+                                                            5,
+                                                            (index) => Icon(
+                                                              index <
+                                                                      (3 +
+                                                                          (index.isEven
+                                                                              ? 1
+                                                                              : 0))
+                                                                  ? Icons.star
+                                                                  : Icons
+                                                                      .star_border,
+                                                              color:
+                                                                  Colors.amber,
+                                                              size: 12,
+                                                            ),
+                                                          ),
                                                         ),
-                                                      ),
-                                                    ],
+                                                        const SizedBox(
+                                                            height: 5),
+                                                        Text(
+                                                          '\£${item.price.toStringAsFixed(2)}',
+                                                          style:
+                                                              const TextStyle(
+                                                            color: Colors.green,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            fontSize: 14,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
                                                   ),
-                                                ),
-                                              ],
+                                                ],
+                                              ),
                                             ),
                                           ),
                                         );
