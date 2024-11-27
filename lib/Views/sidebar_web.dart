@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:restaurant_management_system/Controllers/home_screen_controller.dart';
 import 'package:restaurant_management_system/Views/HomePage/cart_screen.dart';
 import 'package:restaurant_management_system/Views/HomePage/home_screen.dart';
 import 'package:restaurant_management_system/Views/HomePage/order_screen.dart';
@@ -12,7 +14,7 @@ class SideNavWeb extends StatelessWidget {
     HomeScreen(),
     OrdersScreen(),
     CartScreen(),
-    const ProfileScreen(),
+    ProfileScreen(),
   ];
 
   SideNavWeb(

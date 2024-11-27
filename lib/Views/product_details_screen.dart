@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:restaurant_management_system/Models/product_model.dart';
 import 'package:restaurant_management_system/colors.dart';
-import 'package:restaurant_management_system/controllers/cart_controller.dart';
+import 'package:restaurant_management_system/Controllers/cart_controller.dart';
 
 // ignore: must_be_immutable
 class ProductDetailsScreen extends StatelessWidget {

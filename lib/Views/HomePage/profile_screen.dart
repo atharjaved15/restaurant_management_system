@@ -15,15 +15,6 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   final HomeController homeController = Get.put(HomeController());
   @override
-  void initState() async {
-    super.initState();
-    // Initialize data or perform operations when the screen loads
-
-    await homeController
-        .fetchUserData(FirebaseAuth.instance.currentUser!.uid.toString());
-  }
-
-  @override
   Widget build(BuildContext context) {
     // Accessing the HomeController for user data
 
