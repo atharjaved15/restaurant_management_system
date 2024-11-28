@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -78,6 +79,16 @@ class HomeScreen extends StatelessWidget {
                               },
                               child: const Text(
                                 'Cart',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ),
+                            TextButton(
+                              onPressed: () async {
+                                await FirebaseAuth.instance.signOut();
+                                Get.toNamed('/login');
+                              },
+                              child: const Text(
+                                'Logout',
                                 style: TextStyle(color: Colors.white),
                               ),
                             ),
